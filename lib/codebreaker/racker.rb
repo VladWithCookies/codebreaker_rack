@@ -59,7 +59,7 @@ class Racker
         @request.session[:guess] = @request.params['guess']
         @request.session[:mark] = game.check_guess(guess)
       end
-      redirect_to('/')
+      game.win ? redirect_to('/game_over') : redirect_to('/')
     else
       redirect_to('/game_over')
     end
