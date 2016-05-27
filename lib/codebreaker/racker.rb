@@ -46,8 +46,8 @@ class Racker
 
   def game_start
     @request.session.clear
-    game = @request.session[:game] = Game.new
-    game.start
+    @request.session[:game] = Game.new
+    @request.session[:game].start
     redirect_to('/')
   end
 

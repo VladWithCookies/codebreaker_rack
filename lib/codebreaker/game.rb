@@ -6,7 +6,7 @@ module Codebreaker
     attr_accessor :hints
     
     NUM_OF_HINTS = 1
-    NUM_OF_TURNS = 10
+    NUM_OF_TURNS = 15
 
     def initialize
       @secret_code = ""
