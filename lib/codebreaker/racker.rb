@@ -64,7 +64,7 @@ class Racker
       redirect_to('/game_over')
     end
   end
-
+ 
   def save_score
     username = @request.params['username']
     @request.session[:username] = username
