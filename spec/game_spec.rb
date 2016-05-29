@@ -3,7 +3,7 @@ require 'spec_helper'
 module Codebreaker
   RSpec.describe Game do
     subject(:game) { Game.new }
-    subject(:secret_code) { game.instance_variable_get(:@secret_code) }
+    let(:secret_code) { game.instance_variable_get(:@secret_code) }
 
     before do
       game.start

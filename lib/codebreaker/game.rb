@@ -6,7 +6,7 @@ module Codebreaker
     attr_accessor :hints
     
     NUM_OF_HINTS = 1
-    NUM_OF_TURNS = 15
+    NUM_OF_TURNS = 10
 
     def initialize
       @secret_code = ""
@@ -20,6 +20,10 @@ module Codebreaker
     end
 
     def check_guess(guess)
+      if guess == @secret_code
+        @win = true
+        return "++++"
+      end
       @turns -= 1
       result = ""
       code, g = @secret_code.chars, guess.chars
@@ -33,7 +37,6 @@ module Codebreaker
         result << "-"
         delete_at_both(code, g, x) 
       end 
-      @win = true if result == "++++"
       return result
     end
 

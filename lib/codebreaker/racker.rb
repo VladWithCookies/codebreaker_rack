@@ -21,7 +21,7 @@ class Racker
       when "/start" then game_start
       when "/make_guess"  then make_guess
       when "/save_score" then save_score
-      when "/game_over" then Rack::Response.new(render("game_over.html.erb"))
+      when "/game_over" then game_over
       when "/score_table" then Rack::Response.new(render("score_table.html.erb"))
     else 
       Rack::Response.new("Not Found", 404)  
@@ -44,11 +44,23 @@ class Racker
     @request.session[:hint]
   end
 
+  def hints_left
+    NUM_OF_HINTS - game.hints
+  end
+
+  def turns_left
+    NUM_OF_TURNS - game.turns
+  end
+
   def game_start
     @request.session.clear
     @request.session[:game] = Game.new
     @request.session[:game].start
     redirect_to('/')
+  end
+
+  def game_over
+    Rack::Response.new(render("game_over.html.erb"))
   end
 
   def make_guess
@@ -69,7 +81,7 @@ class Racker
     username = @request.params['username']
     @request.session[:username] = username
     save(game.get_score(username))
-    redirect_to('/score_table')
+    redirect_to('/start')
   end
 
   def render(template)
