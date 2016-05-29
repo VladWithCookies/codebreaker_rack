@@ -45,11 +45,11 @@ class Racker
   end
 
   def hints_left
-    NUM_OF_HINTS - game.hints
+    Game::NUM_OF_HINTS - game.hints
   end
 
   def turns_left
-    NUM_OF_TURNS - game.turns
+    Game::NUM_OF_TURNS - game.turns
   end
 
   def game_start
